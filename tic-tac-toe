@@ -1,0 +1,61 @@
+# import
+from random import *
+
+# functions
+def prRow(box1, box2, box3):
+	""""prints a row of three boxes"""""
+	print(box1 + "|" + box2 + "|" + box3)
+
+def prBrd(list):
+	""""prints the board"""""
+	divider = "---+---+---"
+	prRow(listBox[0], listBox[1], listBox[2])
+	print(divider)
+	prRow(listBox[3], listBox[4], listBox[5])
+	print(divider)
+	prRow(listBox[6], listBox[7], listBox[8])
+
+def checkWin(list):
+	if ((box1 == box2 == box3) or (box4 == box5 == box6) or (box7 == box8 == box9) or (box1 == box4 == box7) or (box2 == box5 == box8) or (box3 == box6 == box9) or (box1 == box5 == box9) or (box3 == box5 == box7)) == " X ":
+		print("Congratulations! The player wins this game!")
+	elif ((box1 == box2 == box3) or (box4 == box5 == box6) or (box7 == box8 == box9) or (box1 == box4 == box7) or (box2 == box5 == box8) or (box3 == box6 == box9) or (box1 == box5 == box9) or (box3 == box5 == box7)) == " O ":
+		print("Congratulations! The computer wins this game!")
+	else:
+		print("It's a tie! Play again!")
+
+# int vars
+box1 = "   "
+box2 = "   "
+box3 = "   "
+box4 = "   "
+box5 = "   "
+box6 = "   "
+box7 = "   "
+box8 = "   "
+box9 = "   "
+listBox = [box1, box2, box3, box4, box5, box6, box7, box8, box9]
+strBox = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+for i in range(9):
+	prBrd(listBox)
+	pMove = False
+
+	while pMove == False:
+		move = input("In which box would you like to put an X? >> ")
+		if 0 < int(move) < 10 and listBox[int(move) - 1] == "   ":
+				listBox[int(move) -1] = " X "
+				pMove = True
+		else:
+			print("That's not a valid move!")
+	prBrd(listBox)
+
+	cMove = False
+
+	while cMove == False:
+		compMove = randint(1,9)
+		print("comp move:", compMove)
+		if listBox[int(compMove) - 1] == "   ":
+				listBox[int(compMove) -1] = " O "
+				cMove = True
+		else:
+			print("That's not a valid move!")
